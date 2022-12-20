@@ -21,13 +21,17 @@ Rails.application.routes.draw do
   # https://guides.rubyonrails.org/routing.html#routing-concerns
   # ==================================================================
 
-  root "articles#index"
+  root 'articles#index'
 
   # Replace 2 lines below with 'resources :articles"
   # and inspect what routes are mapped by "rails routes -g articles -E"
   # get "/articles", to: "articles#index"
   # get "/articles/:id", to: "articles#show"
 
-  resources :articles
-
+  # with 7 default actions for 'article'
+  resources :articles, shallow: true do # using shallow nesting here.
+    # /articles/:id/resources/:id
+    # with 7 default actions for 'comments'
+    resources :comments
+  end
 end

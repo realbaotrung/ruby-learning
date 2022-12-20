@@ -1,5 +1,6 @@
 <div>
-  <h1>
+  <%# Article section %>
+  <h1 class="font-bold text-3xl text-blue-500">
     <%= @article.title %>
   </h1>
 
@@ -7,17 +8,46 @@
     <%= @article.body %>
   </p>
 
-  <br>
-
-  <ul>
-    <li>
+  <div class="mb-4">
+    <button class="w-32 p-1 bg-blue-800 text-white rounded-lg">
       <%= link_to "Edit", edit_article_path(@article) %>
-    </li>
-    <li>
+    </button>
+    <button class="w-32 p-1 bg-blue-800 text-white rounded-lg">
       <%= link_to "Destroy", article_path(@article), data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %>
-    </li>
-  </ul>
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+    </button>
+  </div>
+
+  <%# Comment - Show %>
+
+  <div class="mb-4 flex flex-col gap-2">
+    <%# this will render 'app/views/comments/_comment.html.erb' once for each comment %>
+    <%# that is in the '@article.comments' collection %>
+    <%# for readability use this %>
+    <% @article.comments.each do |cmt| %>
+      <% unless cmt.archived? %>
+        <%= render 'comments/comment', comment: cmt %>
+      <% else %>
+        <div class="text-slate-400 line-through">
+          <%= render 'comments/comment', comment: cmt %>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%# the upper code is the same as below %>
+    <%# = render @article.comments %>
+
+  </div>
+
+  <%# Comment - Form %>
+
+  <div>
+    <h2 class="font-bold text-xl">Add a comment:</h2>
+    <div>
+      <%= render 'comments/form', article: @article %>
+    </div>
+  </div>
+
 </div>

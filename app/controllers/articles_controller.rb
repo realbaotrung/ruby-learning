@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
   # 'create' action instantiates a new article, with values, and attempts to save it
   def create
-    # note about 'article_params' really importance
+    # NOTE: about 'article_params' really importance
     @article = Article.new(article_params)
 
     if @article.save
@@ -58,10 +58,11 @@ class ArticlesController < ApplicationController
   end
 
   private
-    def article_params
-      # this code below help filter params, make it strong params
-      # really useful for 'create' and 'update' action.
-      # https://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
-      params.require(:article).permit(:title, :body)
-    end
+
+  def article_params
+    # this code below help filter params, make it strong params
+    # really useful for 'create' and 'update' action.
+    # https://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
+    params.require(:article).permit(:title, :body, :status)
+  end
 end

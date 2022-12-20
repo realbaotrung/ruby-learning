@@ -1,20 +1,27 @@
 <div>
-  <h1 class="font-bold text-4xl">Articles</h1>
+  <h1 class="font-bold text-4xl text-blue-800">Articles</h1>
 
-  <br>
+  <p class="mb-4">Our blog has
+    <strong><%= Article.public_count %></strong>
+    public articles!</p>
 
-  <ul class="flex flex-col">
+  <ul class="flex flex-col mb-4">
     <% @articles.each do |article| %>
-      <li>
-        <%# or we can use 'link_to' %>
-        <%= link_to "with link_to: #{article.title}", article %>
-      </li>
+      <% unless article.archived? %>
+        <li
+          class="<%= article.status != 'private' ? "hover:text-blue-500" : "hover:text-red-500"%>"
+        >
+          <%= link_to "Article: #{article.title}, status: #{article.status}", article %>
+        </li>
+      <% else %>
+        <li class="text-slate-400 line-through">
+          <%= link_to "Article: #{article.title}, status: #{article.status}", article %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 
-  <br>
-
-  <div>
+  <button class="w-36 p-1 bg-blue-700 rounded-lg text-white">
     <%= link_to "New Article", new_article_path %>
-  </div>
+  </button>
 </div>
