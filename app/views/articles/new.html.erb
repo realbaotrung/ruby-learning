@@ -1,0 +1,10 @@
+<div>
+  <h1 class="font-bold">New Article</h1>
+  <div>
+    <%# https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials %>
+    <%# a partial's filename: '_form.html.erb' must be prefix with '_' %>
+    <%# but when redering, it is referenced without '_' %>
+    <%# render "form" %>
+    <%= render "form", article: @article %>
+  </div>
+</div>
