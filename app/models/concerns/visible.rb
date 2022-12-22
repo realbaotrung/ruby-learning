@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # status validation
 module Visible
   # see doc about active support concern

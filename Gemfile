@@ -69,6 +69,12 @@ group :development do
   # erb formatter
   gem "erb-formatter"
 
+  # rubocop
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
