@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.2"
+ruby "3.1.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
@@ -59,8 +59,10 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "rubocop"
+
+  # solargraph
   gem "solargraph"
+  gem "solargraph-rails"
 
   # supports for reloading browser after edit views files
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
